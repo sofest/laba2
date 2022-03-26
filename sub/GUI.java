@@ -12,6 +12,7 @@ public class GUI extends JFrame {
 
 
     public GUI() {
+
         Calc calc = new Calc();
         Excel excel = new Excel();
 
@@ -43,14 +44,17 @@ public class GUI extends JFrame {
                     int ret = fileChooser.showOpenDialog(GUI.this);
                     if (ret == JFileChooser.APPROVE_OPTION) {
                         File file = fileChooser.getSelectedFile();
-                        excel.Import(file.getAbsolutePath());
-                        inputImport.setText(file.getAbsolutePath());
-                        JOptionPane.showMessageDialog(null, "Данные импортированы в файл", "Import", JOptionPane.PLAIN_MESSAGE);
+                        try {
+                            excel.Import(file.getAbsolutePath());
+                            inputImport.setText(file.getAbsolutePath());
+                            JOptionPane.showMessageDialog(null, "Данные экспортированы в файл", "Export", JOptionPane.PLAIN_MESSAGE);
+                        } catch (Exception exception) {
+                            JOptionPane.showMessageDialog(null, "Не найден файл", "Ошибка", JOptionPane.PLAIN_MESSAGE);
+                        }
                     }
-
-
-                } catch (HeadlessException headlessException) {
-                    JOptionPane.showMessageDialog(null, "Не найдено", "Error", JOptionPane.PLAIN_MESSAGE);
+                }
+                catch (HeadlessException headlessException) {
+                    JOptionPane.showMessageDialog(null, "Не найдено", "Ошибка", JOptionPane.PLAIN_MESSAGE);
                 }
 
             }
@@ -72,7 +76,7 @@ public class GUI extends JFrame {
 
                         } catch (Exception ex) {
                             ex.printStackTrace();
-                            JOptionPane.showMessageDialog(null, "Не найдено", "Error", JOptionPane.PLAIN_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Ошибка", "Error", JOptionPane.PLAIN_MESSAGE);
                         }
 
                     }

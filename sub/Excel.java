@@ -25,9 +25,9 @@ public class Excel {
 
             int lastCellNum = sheet.getRow(0).getLastCellNum();
             for (int i = 0; i < lastCellNum; i++) {
-                list.add(new ArrayList<>()); //массив колонок
+                list.add(new ArrayList<>()); 
             }
-            XSSFRow header = sheet.getRow(0); //названия колонок
+            XSSFRow header = sheet.getRow(0); 
             for (int i = 0; i < lastCellNum; i++) {
                 head.add(header.getCell(i).getStringCellValue());
             }
